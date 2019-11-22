@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <title>
+        Admin
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#form').bind('submit', function(event) {
+                console.log("lol");
+                var nisser = $('#nisser').val();
+                console.log(nisser);
+                $('#hidden').val(nisser);
+
+                $(this).unbind('submit').submit();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Hej admin</h1>
+
+    <form id="form" method="post" action="/admin_post">
+        <h3>Hvad er dit navn</h3>
+        <input type="text" name="name">
+        <h3>Indtast navnene på dem der er med i nisseleg i en komma separeret liste</h3>
+        <input id="nisser" type="text" name="nisser">
+        <input id="hidden" type="hidden" name="hidden">
+        <input type="submit">
+    </form>
+</body>
+
+</html>

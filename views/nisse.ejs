@@ -1,23 +1,69 @@
-<!DOCTYPE html>
 <html>
 
 <head>
     <title>
-        <%= title %>
+        Nisse venner
     </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+        });
+
+        function generateNisse(player) {
+            console.log("helloe");
+            $.ajax({
+                    url: '/getNisse',
+                    method: 'GET',
+                })
+                .done(function(data) {
+                    console.log(data);
+                    console.log(data.nisser);
+                    var random = Math.floor(Math.random() * data.nisser.length);
+                    console.log(random);
+                    var nisse = data.nisser[random];
+                    console.log(nisse);
+                    $('#nisse').text("Din nisseven er " + nisse + "!");
+                    $('#btn').remove();
+                    saveNisse(nisse, player);
+                });
+        }
+
+        function saveNisse(nisse, player) {
+            console.log(nisse);
+            $.ajax({
+                    url: '/setNisse',
+                    method: 'POST',
+                    data: {
+                        nisse: nisse,
+                        name: player
+                    }
+                })
+                .done(function(data) {
+                    console.log("ajax done!");
+                });
+        }
+    </script>
 </head>
 
 <body>
-    <h1>Juleting.</h1>
+    <h1>Hej
+        <%= player %>
+    </h1>
 
-    <h2>Her bliver din nisseven lavet</h2>
+    <% if(isNisse) { %>
+        <h2>Din nisseven er <strong><%= nisse %></strong></h2>
+        <% } else { %>
+            <h2>Her bliver din nisseven lavet</h2>
 
-    <form id="form" method="post" action="/start">
-        <input type="text" name="name" placeholder="Indtast dit navn her">
-        <input type="submit">
-    </form>
+            <button id="btn" type="button" onclick="generateNisse('<%=player%>')">Tryk her for at generere din nisseven!</button>
+
+            <div>
+                <h3 id="nisse"></h3>
+            </div>
+            <% } %>
+
 </body>
 
 </html>

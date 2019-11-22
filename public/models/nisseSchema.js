@@ -1,13 +1,14 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
 var nisseSchema = new Schema({
-    playerName: String,
-    nisseName: String
+    admin: String,
+    nisser: {
+        type: Array,
+        default: []
+    },
 }, { usePushEach: true });
 
-var studentClass = mongoose.model('students', studentSchema);
-// var moduleClass = mongoose.model('teachers', moduleSchema); 
+var nisseClass = mongoose.model('nisser', nisseSchema);
 
-module.exports = studentClass;
+module.exports = nisseClass;

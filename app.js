@@ -6,26 +6,30 @@ var logger = require('morgan');
 var fs = require('fs');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
 var nisseClass = require('./public/models/nisseSchema.js');
+var playerClass = require('./public/models/playerSchema.js');
 var mongo = require('mongodb');
-var cors = require('cors');
 
 var mongoose = require('mongoose');
-var Grid = require('gridfs-stream');
 var http = require("http");
 
-var mongoDB = 'mongodb://23Wolter:40NietoAve90803@ds055397.mlab.com:55397/nissevenner';
+var mongoDB = 'mongodb://nisse:nisse2019@ds055397.mlab.com:55397/nissevenner';
+// var mongoDB = 'mongodb://localhost/nissevenner';
+
 var options = {
-    useMongoClient: true
+    useNewUrlParser: true
 };
 mongoose.connect(mongoDB, options);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.on('connected', function() { console.log('connected correctly to db.'); });
-
-Grid.mongo = mongoose.mongo;
+db.on('connected', function(error) {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log('connected correctly to db.');
+    }
+});
 
 var app = express();
 
