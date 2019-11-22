@@ -5,7 +5,7 @@ var nisseClass = require('./../public/models/nisseSchema.js');
 var playerClass = require('./../public/models/playerSchema.js');
 
 
-
+var master_admin = "oliver";
 
 router.get('/', function(req, res, next) {
     res.render('index', { title: 'Jul' });
@@ -103,7 +103,9 @@ router.get('/nisse', function(req, res, next) {
 
 router.get('/getNisse', function(req, res, next) {
 
-    nisseClass.findOne({}, {}, function(err, nisse) {
+    nisseClass.findOne({
+        admin: master_admin
+    }, {}, function(err, nisse) {
         if (err) {
             res.send(err);
         } else {
