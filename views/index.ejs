@@ -7,15 +7,89 @@
     </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <style>
+        body {
+            background-color: green;
+            background-image: url("images/background2.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        h1 {
+            font-size: 50px;
+            color: white;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        
+        h2 {
+            color: white;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        
+        #content {
+            text-align: center;
+        }
+        
+        form {
+            margin-top: 20px;
+        }
+        
+        .top {
+            width: 100%;
+        }
+        
+        .middle {
+            display: inline-block;
+            margin: 40px;
+        }
+        
+        iframe {
+            width: 80%;
+            margin: 20px;
+        }
+        
+        .bottom {
+            width: 100%;
+        }
+        
+        #input {
+            width: 10%;
+            height: 40px;
+        }
+        
+        #btn {
+            color: white;
+            background-color: red;
+            height: 40px;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Juleting.</h1>
+    <div id="content">
+        <h1>GLÆDELIG JUL</h1>
+        <h2>SKRIV DIT NAVN I FELTET NEDENFOR OG SE HVEM DU SKAL GIVE GAVE TIL</h2>
 
-    <form id="form" method="post" action="/start">
-        <input type="text" name="name" placeholder="Indtast dit navn her">
-        <input type="submit">
-    </form>
+        <div class="top">
+        </div>
+
+        <div class="middle">
+            <iframe src="https://giphy.com/embed/9w475hDWEPVlu" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+        </div>
+        <div class="middle">
+            <iframe src="https://giphy.com/embed/8GbmBOTB9Ely0" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+        </div>
+        <div class="middle">
+            <iframe src="https://giphy.com/embed/3kzrzzQXUfI6bmUNf3" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+        </div>
+
+        <div class="bottom">
+            <form id="form" method="post" action="/start">
+                <input id="input" type="text" name="name" placeholder="Skriv dit navn her">
+                <input id="btn" type="submit" value="SEND JULEMAGI">
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>

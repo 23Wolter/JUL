@@ -6,19 +6,70 @@
     </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <style>
+        body {
+            background-color: green;
+            background-image: url("images/background3.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        h1 {
+            font-size: 50px;
+            color: white;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        
+        h2 {
+            color: white;
+            font-size: 30px;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        
+        #content {
+            text-align: center;
+        }
+        
+        .top {
+            width: 100%;
+        }
+        
+        .middle {
+            display: inline-block;
+            margin: 40px;
+        }
+        
+        iframe {
+            width: 100%;
+            margin: 20px;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Hej
-        <%= player %>
-    </h1>
+    <div id="content">
+        <h1>Hej
+            <%= player %>
+        </h1>
 
-    <% if(nisse) { %>
-        <h2>Din nisseven er <strong><%= nisse %></strong></h2>
-        <% } else { %>
-            <h2>Kunne ikke finde din nisse, tjek at du har stavet dit navn rigtigt</h2>
-            <a href="https://nissevenner.herokuapp.com/">Prøv igen</a>
-            <% } %>
+        <% if(nisse) { %>
+            <h2>Din nisseven er <span id="nisseven"><%= nisse %></span></h2>
+            <% } else { %>
+                <h2>Kunne ikke finde din nisse, tjek at du har stavet dit navn rigtigt</h2>
+                <a href="https://nissevenner.herokuapp.com/">Prøv igen</a>
+                <% } %>
+
+
+                    <div class="middle">
+                        <iframe src="https://giphy.com/embed/I9ghnmJEzOh7G" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+                    </div>
+                    <div class="middle">
+                        <iframe src="https://giphy.com/embed/hPOQVZwGY9c0o" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+                    </div>
+                    <div class="middle">
+                        <iframe src="https://giphy.com/embed/dZ3X5Ds2CLhRAkk9OG" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+                    </div>
+    </div>
 </body>
 
 </html>
