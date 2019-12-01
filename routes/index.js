@@ -17,41 +17,30 @@ router.post('/start', function(req, res) {
 
     var name = req.body.name;
 
-    playerClass.findOne({
-        playerName: name
-    }, {}, function(err, player) {
+    nisseClass.findOne({
+        admin: master_admin
+    }, {}, function(err, nisse) {
         if (err) {
             res.send(err);
         } else {
+            console.log("hej ", nisse);
 
-            console.log(player);
-
-            var nisse = "";
-            var isNisse = false;
-
-            if (player) {
-                console.log("player exists " + player.playerName + " " + player.nisseName);
-                nisse = player.nisseName;
-                isNisse = true;
-            } else {
-                console.log("no player found " + isNisse);
-                player = new playerClass({
-                    playerName: name
-                });
-
-                player.save(function(err, data) {
-                    if (err) console.log(err);
-                });
+            var people = nisse.people;
+            var nisser = nisse.nisser;
+            var secretNisse = "";
+            for (var i = 0; i < people.length; i++) {
+                if (people[i].toLowerCase().trim() == name.toLowerCase().trim()) {
+                    secretNisse = nisser[i];
+                    break;
+                } else {
+                    secretNisse = null;
+                }
             }
-
-            console.log("Nisse er " + nisse);
 
             res.render('nisse', {
                 player: name,
-                nisse: nisse,
-                isNisse: isNisse
+                nisse: secretNisse
             });
-
         }
     });
 });
@@ -64,11 +53,24 @@ router.get('/admin', function(req, res, next) {
 router.post('/admin_post', function(req, res) {
 
     var name = req.body.name;
-    var nisser = req.body.hidden;
-    console.log("admin post ", typeof nisser);
+    var people = req.body.hidden;
+    console.log("admin post ", typeof people);
 
-    nisser = nisser.split(',');
-    console.log(nisser);
+    people = people.split(',');
+    console.log(people);
+
+    var j, x, i;
+    for (i = people.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = people[i];
+        people[i] = people[j];
+        people[j] = x;
+    }
+
+    var nisser = people.slice();
+    var a = nisser.shift();
+    nisser.push(a);
+    console.log("nisser " + nisser);
 
     nisseClass.findOne({
         admin: name
@@ -81,11 +83,12 @@ router.post('/admin_post', function(req, res) {
 
                 admin = new nisseClass({
                     admin: name,
+                    people: people,
                     nisser: nisser
                 });
 
             } else {
-                admin.nisser = nisser;
+                admin.people = people;
             }
 
             admin.save(function(err, data) {

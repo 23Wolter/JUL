@@ -3,6 +3,10 @@ var Schema = mongoose.Schema;
 
 var nisseSchema = new Schema({
     admin: String,
+    people: {
+        type: Array,
+        default: []
+    },
     nisser: {
         type: Array,
         default: []
