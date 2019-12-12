@@ -11,6 +11,10 @@ var nisseSchema = new Schema({
         type: Array,
         default: []
     },
+    nisseOnsker: {
+        type: Array,
+        default: []
+    }
 }, { usePushEach: true });
 
 var nisseClass = mongoose.model('nisser', nisseSchema);

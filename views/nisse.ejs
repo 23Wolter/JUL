@@ -26,6 +26,14 @@
             font-family: "Comic Sans MS", "Comic Sans", cursive;
         }
         
+        #wish {
+            color: white;
+            font-size: 24px;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+            width: 50%;
+            margin-left: 25%;
+        }
+        
         #content {
             text-align: center;
         }
@@ -54,6 +62,10 @@
 
         <% if(nisse) { %>
             <h2>Din nisseven er <span id="nisseven"><%= nisse %></span></h2>
+            <h2>Som har ønsket sig følgende</h2>
+            <h3 id="wish">
+                <%= onsker %>
+            </h3>
             <% } else { %>
                 <h2>Kunne ikke finde din nisse, tjek at du har stavet dit navn rigtigt</h2>
                 <a href="https://nissevenner.herokuapp.com/">Prøv igen</a>

@@ -62,6 +62,21 @@
             background-color: red;
             height: 40px;
         }
+        
+        #onsker {
+            width: 40%;
+            height: 100px;
+        }
+        
+        #div1,
+        #div2 {
+            width: 100%;
+        }
+        
+        #div2 {
+            background-color: green;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 
@@ -85,8 +100,14 @@
 
         <div class="bottom">
             <form id="form" method="post" action="/start">
-                <input id="input" type="text" name="name" placeholder="Skriv dit navn her">
-                <input id="btn" type="submit" value="SEND JULEMAGI">
+                <div id="div1">
+                    <input id="input" type="text" name="name" placeholder="Skriv dit navn her">
+                    <input id="btn" type="submit" value="SEND JULEMAGI">
+                </div>
+                <div id="div2">
+                    <h2>Hvis du ikke har angivet ønsker, eller vil tilføje ønsker, så skriv dem i feltet nedenfor.</h2>
+                    <textarea id="onsker" name="onsker" form="form"></textarea>
+                </div>
             </form>
         </div>
     </div>

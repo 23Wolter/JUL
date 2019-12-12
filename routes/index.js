@@ -16,10 +16,12 @@ router.get('/', function(req, res, next) {
 router.post('/start', function(req, res) {
 
     var name = req.body.name;
+    var onsker = req.body.onsker;
+    console.log("this ønsker " + onsker);
 
     nisseClass.findOne({
         admin: master_admin
-    }, {}, function(err, nisse) {
+    }, function(err, nisse) {
         if (err) {
             res.send(err);
         } else {
@@ -27,19 +29,35 @@ router.post('/start', function(req, res) {
 
             var people = nisse.people;
             var nisser = nisse.nisser;
+            console.log("current ønsker " + typeof nisse.nisseOnsker);
+            var current_onsker = nisse.nisseOnsker;
+            console.log("one ønske " + current_onsker[0]);
+            var wishes = "";
             var secretNisse = "";
+            var nextWishes = "";
             for (var i = 0; i < people.length; i++) {
                 if (people[i].toLowerCase().trim() == name.toLowerCase().trim()) {
                     secretNisse = nisser[i];
+                    current_onsker[i] += (" " + onsker);
+                    wishes = current_onsker[i];
+                    nisse.nisseOnsker[i] = wishes;
+
+                    nextWishes = nisse.nisseOnsker[i + 1];
                     break;
                 } else {
                     secretNisse = null;
                 }
             }
 
+            nisse.markModified('nisseOnsker');
+            nisse.save(function(err, data) {
+                if (err) console.log(err);
+            });
+
             res.render('nisse', {
                 player: name,
-                nisse: secretNisse
+                nisse: secretNisse,
+                onsker: nextWishes
             });
         }
     });
